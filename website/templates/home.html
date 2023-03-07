@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;">Website Analisa RAW Data</h3>
+    </div>
+    
+    <div class="container">
+        <h3 style="text-align: center;">Upload Data Excel</h3>
+    </div>
+    <div>
+        <div class="upload">
+            <p1>Upload Data</p1>
+            <br><br>
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('pros.upload') }}">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                  {{ form.file.label }}
+                  {{ form.file(class="form-control-file") }}
+              </div>
+              {{ form.submit(class="btn btn-primary") }}
+            </form>
+            <br>
+            {% if message %}
+            <div id="message">{{ message }}</div>
+            {% endif %}
+        </div>
+        <br>
+        <div class="proses">
+            <!-- Button untuk memproses DLH -->
+            <button type="button" onclick="alert('Dataset DLH sedang di proses!');window.location.href='/reportDetail'">Proses Detail Laporan</button>
+            <br>
+            <!-- button untuk memproses Work Order -->
+            <button type="button" onclick="alert('Dataset WO sedang di proses!');window.location.href='/workOrder'">Proses Work Order</button>
+            <br>
+            <!-- button untuk memproses Work Order -->
+            <button type="button" onclick="alert('Dataset SLA sedang di proses!');window.location.href='/sla'">Proses SLA</button>
+            <br><br> 
+            <!-- Button untuk mendownload file -->
+            <form method="post" action="{{ url_for('pros.download') }}">
+                <button type="submit">Download</button>
+            </form>
+        </div>  
+    </div>
+</body>
+
+
+{% endblock %}
