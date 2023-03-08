@@ -10,5 +10,9 @@ def create_app():
     from .pros import pros
     app.register_blueprint(pros,url_prefix='/')
 
+    from ..main import main
+    app.register_blueprint(main,url_prefix='/')
+
+
     return app
 

@@ -9,7 +9,7 @@ body{
   display: flex;
   justify-content: left;
   padding: 10px;
-  height: 10px;
+  height: 12px;
   text-align: center;
   background: #0252de;
   color: whitesmoke; 
@@ -17,7 +17,7 @@ body{
 }
 
 .header a{
-  font-size: 10px;
+  font-size: 12px;
   font-family: 'Play', sans-serif;
   text-decoration: none;
   color: #ededed;
@@ -48,8 +48,12 @@ body{
   text-align:right;
   color: whitesmoke;
   bottom: 0;
-  font-size: 8px;
+  font-size: 10px;
+  height: 12px;
   }
+
+  .footer 
+
   
 .container{
   max-width: 600px;

@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, flash, make_response, redirect, render_template, request, url_for, send_file
+from flask import Blueprint, flash, jsonify, make_response, redirect, render_template, request, url_for, send_file
 from numpy import append
 from werkzeug.utils import secure_filename
 import pandas as pd
@@ -29,8 +29,7 @@ def upload():
     else:
         message = None # add this line
     print (df)
-    return render_template('home.html', form=form, message=message) # pass the form variable to the template
-
+    return jsonify(message=message)
 
 @pros.route("/reportDetail")
 def reportDetail():

@@ -15,30 +15,45 @@
         <div class="upload">
             <p1>Upload Data</p1>
             <br><br>
-            <form method="POST" enctype="multipart/form-data" action="{{ url_for('pros.upload') }}">
-              {{ form.hidden_tag() }}
-              <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
                   {{ form.file.label }}
                   {{ form.file(class="form-control-file") }}
-              </div>
-              {{ form.submit(class="btn btn-primary") }}
-            </form>
-            <br>
-            {% if message %}
-            <div id="message">{{ message }}</div>
-            {% endif %}
+                </div>
+                <button type="button" class="btn btn-primary" onclick="uploadFile()">Upload</button>
+              </form>
+              <br>
+              <div id="message"></div>
+
+            <script>
+            function uploadFile() {
+                var form = document.querySelector('form');
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '{{ url_for("pros.upload") }}');
+                xhr.onload = function() {
+                    var message = JSON.parse(xhr.responseText).message;
+                    document.getElementById("message").innerHTML = message;
+                };
+                xhr.send(formData);
+                }
+            </script>
         </div>
         <br>
         <div class="proses">
             <!-- Button untuk memproses DLH -->
-            <button type="button" onclick="alert('Dataset DLH sedang di proses!');window.location.href='/reportDetail'">Proses Detail Laporan</button>
+            <button type="button" onclick="window.location.href='/reportDetail'">Proses Detail Laporan</button>
             <br>
             <!-- button untuk memproses Work Order -->
-            <button type="button" onclick="alert('Dataset WO sedang di proses!');window.location.href='/workOrder'">Proses Work Order</button>
+            <button type="button" onclick="window.location.href='/workOrder'">Proses Work Order</button>
             <br>
             <!-- button untuk memproses Work Order -->
-            <button type="button" onclick="alert('Dataset SLA sedang di proses!');window.location.href='/sla'">Proses SLA</button>
-            <br><br> 
+            <button type="button" onclick="window.location.href='/sla'">Proses SLA</button>
+            <br><br>
+            {% if message2 %}
+            <div>{{ message2 }}</div>
+            {% endif %}
             <!-- Button untuk mendownload file -->
             <form method="post" action="{{ url_for('pros.download') }}">
                 <button type="submit">Download</button>
