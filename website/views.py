@@ -32,3 +32,8 @@ def contactus():
 def tentangprogram():
     return render_template('tentangprogram.html')
 
+@views.route('/start')
+def start():
+    import main as main
+    main.start()
+    return render_template('home.html')
