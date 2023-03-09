@@ -32,7 +32,3 @@ def contactus():
 def tentangprogram():
     return render_template('tentangprogram.html')
 
-@views.route('/index')
-def index():
-    return render_template('index.html')
-
